@@ -15,7 +15,10 @@ public class ArrayProcessing {
     }
 
     public void getNumbers(){
-        return;
+        for (int i = 0; i < intArray.length; i++){
+            System.out.println("Enter an integer: ");
+            intArray[i] = Integer.parseInt(s.nextLine());
+        }
     }
 
     public void processNumbers(){
