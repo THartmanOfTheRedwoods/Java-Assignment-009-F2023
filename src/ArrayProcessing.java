@@ -1,12 +1,11 @@
-import java.io.File;
-import java.util.Arrays;
+
 import java.util.Scanner;
 
 
 public class ArrayProcessing {
 
-    private int[] intArray;
-    private Scanner s;
+    private final int[] intArray;
+    private final Scanner s;
     private static final String[] menuProcess = {
             "Choose an option to perform:",
             ") Add numbers",
@@ -21,6 +20,14 @@ public class ArrayProcessing {
             ") Exit program"
     };
 
+    private static final String[] intOrder = {
+            "first",
+            "second",
+            "third",
+            "fourth",
+            "fifth"
+    };
+
     private static final String errMessage = "Invalid Entry";
 
     public ArrayProcessing(){
@@ -33,7 +40,7 @@ public class ArrayProcessing {
 
     public void getNumbers(){
         for (int i = 0; i < intArray.length; i++){
-            System.out.println("Enter an integer: ");
+            System.out.printf("Enter %s integer: ", intOrder[i]);
             intArray[i] = Integer.parseInt(s.nextLine());
         }
     }
@@ -47,21 +54,14 @@ public class ArrayProcessing {
                 //System.out.println("processNumbers do while start\n" + repeatProgram);      //scaffold
                 invalidInput = false;
                 switch (printMenu()) {
-                    case 1:
-                        add();
-                        break;
-                    case 2:
-                        mult();
-                        break;
-                    case 3:
-                        print();
-                        break;
-                    case 4:
-                        reverse();
-                        break;
-                    default:
+                    case 1 -> add();
+                    case 2 -> mult();
+                    case 3 -> print();
+                    case 4 -> reverse();
+                    default -> {
                         System.out.println(errMessage);
                         invalidInput = true;
+                    }
                 }
             } while (invalidInput);
 //            System.out.println(repeatProgram);              //scaffold
@@ -75,43 +75,39 @@ public class ArrayProcessing {
         for (int i = 1; i < menuProcess.length; i++) {
             System.out.printf("%d: %s%n", i, menuProcess[i]);
         }
-        int userOption = Integer.parseInt(s.nextLine());        //write check on input
-        return userOption;
+        return Integer.parseInt(s.nextLine());
     }
 
-
-//    Create a method named, add, with a return type of void and no parameters that does the following:
-//    Uses a for loop and the array length field to sum the numbers in the array and print the final sum, with the
-//    appropriate label, only once to the terminal window.
     public void add(){
-
+        int sum = 0;
+        for(int i : intArray) {
+            sum += i;
+        }
+        System.out.println("The sum of your numbers is " + sum);
     }
 
-//    Create a method named, mult, with a return type of void and no parameters that does the following:
-//    Uses a for loop and the array length field to multiply the numbers in the array together and print the final
-//    product, with the appropriate label, only once to the terminal window
     public void mult(){
-        return;
+        int product = 1;
+        for (int i: intArray) {
+            product *= i;
+
+        }
+        System.out.println("The product of your numbers is " + product);
     }
 
-//    Create a method named, print, with a return type of void and no parameters that does the following:
-//    Uses a for loop and the array length field to print each number, with the appropriate label, in the array to
-//    the terminal window.
+
     public void print(){
-        return;
+        for (int i = 0; i < intArray.length; i++){
+            System.out.printf("Index %d = %d%n", i, intArray[i] );
+        }
     }
 
-//    Create a method named, reverse, with a return type of void and no parameters that does the following:
-//    Uses a for loop and the array length field to print each number in the array IN REVERSE ORDER, with the
-//    appropriate label, to the terminal window.
     public void reverse(){
-        return;
+        for (int i = intArray.length - 1; i >= 0; i--){
+            System.out.printf("Index %d = %d%n", i, intArray[i] );
+        }
     }
 
-//    Create a method named, again, with a return type of boolean and no parameters that does the following:
-//    Prompts the user to enter the integer 1 to choose another option or 2 to exit.
-//    Grabs an int from the terminal using the Scanner object.
-//    Tests the number entered and returns true if the int is a 1 and false if it is something else.
     public boolean again(){
         boolean repeatProgram = true;
         boolean invalidInput;
@@ -124,20 +120,14 @@ public class ArrayProcessing {
             }
             userAgain = Integer.parseInt(s.nextLine());
             switch (userAgain) {
-                case 1:
-                    repeatProgram = true;
-                    //System.out.println(repeatProgram);      //scaffold
-                    break;
-                case 2:
-                    repeatProgram = false;
-                    //System.out.println(repeatProgram);      //scaffold
-                    break;
-                default:
+                case 1 -> {}
+                case 2 -> repeatProgram = false;
+                default -> {
                     System.out.println(errMessage);
                     invalidInput = true;
+                }
             }
         } while (invalidInput);
-        System.out.println("again method end\n" + repeatProgram);
         return repeatProgram;
     }
 
