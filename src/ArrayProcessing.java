@@ -48,10 +48,8 @@ public class ArrayProcessing {
     public void processNumbers(){
         boolean repeatProgram = true;
         while (repeatProgram) {
-            //System.out.println("processNumbers start while loop\n" + repeatProgram);      //scaffold
             boolean invalidInput;
             do {
-                //System.out.println("processNumbers do while start\n" + repeatProgram);      //scaffold
                 invalidInput = false;
                 switch (printMenu()) {
                     case 1 -> add();
@@ -64,9 +62,7 @@ public class ArrayProcessing {
                     }
                 }
             } while (invalidInput);
-//            System.out.println(repeatProgram);              //scaffold
             repeatProgram = again();
-            //System.out.println("post again method call\n" + repeatProgram);              //scaffold
         }
     }
 
