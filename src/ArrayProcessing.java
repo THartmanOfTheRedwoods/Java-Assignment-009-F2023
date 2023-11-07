@@ -1,11 +1,17 @@
 import java.util.Scanner;
 
+
 public class ArrayProcessing {
 
-
+    private int[] intArray;
+    private Scanner s;
 
     public ArrayProcessing(){
-        return;
+        this.intArray = new int[5];
+        this.s = new Scanner(System.in);
+
+        getNumbers();
+        processNumbers();
     }
 
     public void getNumbers(){
