@@ -39,34 +39,35 @@ public class ArrayProcessing {
     }
 
     public void processNumbers(){
-        boolean repeatProgram = Boolean.parseBoolean(null);
-        do{
-            boolean invalidInput = true;
+        boolean repeatProgram = true;
+        while (repeatProgram) {
+            //System.out.println("processNumbers start while loop\n" + repeatProgram);      //scaffold
+            boolean invalidInput;
             do {
+                //System.out.println("processNumbers do while start\n" + repeatProgram);      //scaffold
+                invalidInput = false;
                 switch (printMenu()) {
                     case 1:
-                        invalidInput = false;
                         add();
                         break;
                     case 2:
-                        invalidInput = false;
                         mult();
                         break;
                     case 3:
-                        invalidInput = false;
                         print();
                         break;
                     case 4:
                         reverse();
-                        invalidInput = false;
                         break;
                     default:
                         System.out.println(errMessage);
+                        invalidInput = true;
                 }
             } while (invalidInput);
+//            System.out.println(repeatProgram);              //scaffold
             repeatProgram = again();
-        } while (repeatProgram);
-
+            //System.out.println("post again method call\n" + repeatProgram);              //scaffold
+        }
     }
 
     public int printMenu(){
@@ -83,7 +84,7 @@ public class ArrayProcessing {
 //    Uses a for loop and the array length field to sum the numbers in the array and print the final sum, with the
 //    appropriate label, only once to the terminal window.
     public void add(){
-        return;
+
     }
 
 //    Create a method named, mult, with a return type of void and no parameters that does the following:
@@ -107,40 +108,40 @@ public class ArrayProcessing {
         return;
     }
 
-
 //    Create a method named, again, with a return type of boolean and no parameters that does the following:
 //    Prompts the user to enter the integer 1 to choose another option or 2 to exit.
 //    Grabs an int from the terminal using the Scanner object.
 //    Tests the number entered and returns true if the int is a 1 and false if it is something else.
     public boolean again(){
-        boolean repeatProgram = Boolean.parseBoolean(null);
-        boolean invalidInput = true;
+        boolean repeatProgram = true;
+        boolean invalidInput;
+        int userAgain;
         do {
+            invalidInput = false;
             System.out.println(menuAgain[0]);
             for (int i = 1; i < menuAgain.length; i++) {
                 System.out.printf("%d: %s%n", i, menuAgain[i]);
             }
-            int userAgain = 0;
-                    userAgain = Integer.parseInt(s.nextLine());        //write check on input
-
+            userAgain = Integer.parseInt(s.nextLine());
             switch (userAgain) {
                 case 1:
-                    invalidInput = false;
                     repeatProgram = true;
+                    //System.out.println(repeatProgram);      //scaffold
                     break;
                 case 2:
-                    invalidInput= false;
                     repeatProgram = false;
+                    //System.out.println(repeatProgram);      //scaffold
                     break;
                 default:
                     System.out.println(errMessage);
+                    invalidInput = true;
             }
         } while (invalidInput);
+        System.out.println("again method end\n" + repeatProgram);
         return repeatProgram;
     }
 
     public static void main(String[] args){
-        ArrayProcessing test = new ArrayProcessing();           //scaffold
-        test.printMenu();
+        ArrayProcessing test = new ArrayProcessing();
     }
 }
