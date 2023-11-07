@@ -127,7 +127,4 @@ public class ArrayProcessing {
         return repeatProgram;
     }
 
-    public static void main(String[] args){
-        ArrayProcessing test = new ArrayProcessing();
-    }
 }
